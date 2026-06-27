@@ -1,0 +1,8 @@
+# PIP Constraints — Blindagem Global
+# Gerado a partir de lib/version_pins.py
+# Este arquivo impede que pip install atualize versões críticas.
+# Uso: os.environ["PIP_CONSTRAINT"] = "/caminho/para/este/arquivo"
+
+numpy<2.1.0
+scikit-image<0.23.0
+scipy<2.0.0

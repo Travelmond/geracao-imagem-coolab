@@ -1,0 +1,19 @@
+__pycache__/
+*.pyc
+*.pyo
+*.egg-info/
+dist/
+build/
+.eggs/
+*.egg
+.DS_Store
+Thumbs.db
+*.log
+*.tmp
+
+# Notebooks legados com outputs salvos (muito grandes para git)
+# DiffusionUI.ipynb  ← descomentar se quiser ignorar o legado (1.3MB)
+
+# ZIPs de distribuição (já extraídos)
+# cache-manager.zip
+# reactor-nsfw-main/reactor-nsfw-main.zip

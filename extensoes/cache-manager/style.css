@@ -1,0 +1,353 @@
+/* ============================================================
+   Cache Manager – Premium Dark Theme (Gradio-additive)
+   ============================================================ */
+
+/* ---------- Design Tokens ---------- */
+#cache-manager-tab {
+  --cm-primary:   #6366f1;
+  --cm-primary-hover: #818cf8;
+  --cm-success:   #22c55e;
+  --cm-success-hover: #4ade80;
+  --cm-warning:   #f59e0b;
+  --cm-warning-hover: #fbbf24;
+  --cm-danger:    #ef4444;
+  --cm-danger-hover: #f87171;
+  --cm-info:      #3b82f6;
+  --cm-info-hover: #60a5fa;
+
+  --cm-bg:        rgba(17, 17, 27, 0.65);
+  --cm-card-bg:   rgba(30, 30, 46, 0.55);
+  --cm-card-border: rgba(99, 102, 241, 0.18);
+  --cm-text:      #cdd6f4;
+  --cm-text-dim:  #9399b2;
+  --cm-surface:   rgba(49, 50, 68, 0.6);
+  --cm-radius:    12px;
+  --cm-radius-sm: 8px;
+  --cm-shadow:    0 4px 24px rgba(0, 0, 0, 0.35);
+  --cm-transition: 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+
+  font-family: 'Inter', 'Segoe UI', system-ui, sans-serif;
+  color: var(--cm-text);
+}
+
+/* ---------- Tab Container ---------- */
+#cache-manager-tab {
+  padding: 1rem;
+  background: var(--cm-bg);
+  border-radius: var(--cm-radius);
+  min-height: 480px;
+}
+
+/* ---------- Glassmorphism Cards ---------- */
+#cache-manager-tab .cm-card {
+  background: var(--cm-card-bg);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--cm-card-border);
+  border-radius: var(--cm-radius);
+  padding: 1.25rem;
+  margin-bottom: 1rem;
+  box-shadow: var(--cm-shadow);
+  transition: border-color var(--cm-transition),
+              box-shadow var(--cm-transition);
+}
+
+#cache-manager-tab .cm-card:hover {
+  border-color: rgba(99, 102, 241, 0.35);
+  box-shadow: 0 6px 32px rgba(99, 102, 241, 0.12);
+}
+
+#cache-manager-tab .cm-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.85rem;
+}
+
+#cache-manager-tab .cm-card-title {
+  font-size: 1.05rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  color: var(--cm-text);
+}
+
+#cache-manager-tab .cm-card-badge {
+  font-size: 0.72rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  padding: 0.2em 0.65em;
+  border-radius: 999px;
+  background: rgba(99, 102, 241, 0.18);
+  color: var(--cm-primary-hover);
+}
+
+/* ---------- Resource / Progress Bars ---------- */
+#cache-manager-tab .cm-bar-track {
+  width: 100%;
+  height: 10px;
+  background: var(--cm-surface);
+  border-radius: 999px;
+  overflow: hidden;
+  position: relative;
+}
+
+#cache-manager-tab .cm-bar-fill {
+  height: 100%;
+  border-radius: 999px;
+  transition: width 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Gradient stops: green → yellow → red */
+#cache-manager-tab .cm-bar-fill.usage-low {
+  background: linear-gradient(90deg, #22c55e, #4ade80);
+}
+
+#cache-manager-tab .cm-bar-fill.usage-mid {
+  background: linear-gradient(90deg, #22c55e, #f59e0b);
+}
+
+#cache-manager-tab .cm-bar-fill.usage-high {
+  background: linear-gradient(90deg, #f59e0b, #ef4444);
+}
+
+#cache-manager-tab .cm-bar-fill.usage-critical {
+  background: linear-gradient(90deg, #ef4444, #dc2626);
+}
+
+/* Animated shimmer on bars */
+#cache-manager-tab .cm-bar-fill::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.18) 50%,
+    transparent 100%
+  );
+  animation: cm-shimmer 2s ease-in-out infinite;
+}
+
+@keyframes cm-shimmer {
+  0%   { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+
+#cache-manager-tab .cm-bar-label {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.78rem;
+  color: var(--cm-text-dim);
+  margin-top: 0.35rem;
+}
+
+/* ---------- Action Buttons ---------- */
+#cache-manager-tab .cm-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45em;
+  padding: 0.55em 1.15em;
+  font-size: 0.85rem;
+  font-weight: 600;
+  border: none;
+  border-radius: var(--cm-radius-sm);
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  transition: transform var(--cm-transition),
+              box-shadow var(--cm-transition),
+              filter var(--cm-transition);
+}
+
+#cache-manager-tab .cm-btn::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  background: rgba(255, 255, 255, 0.12);
+  transition: opacity var(--cm-transition);
+}
+
+#cache-manager-tab .cm-btn:hover {
+  transform: translateY(-2px) scale(1.03);
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.25);
+}
+
+#cache-manager-tab .cm-btn:hover::before {
+  opacity: 1;
+}
+
+#cache-manager-tab .cm-btn:active {
+  transform: translateY(0) scale(0.98);
+}
+
+/* Button Variants */
+#cache-manager-tab .cm-btn-primary {
+  background: var(--cm-primary);
+  color: #fff;
+}
+#cache-manager-tab .cm-btn-primary:hover {
+  background: var(--cm-primary-hover);
+}
+
+#cache-manager-tab .cm-btn-success {
+  background: var(--cm-success);
+  color: #fff;
+}
+#cache-manager-tab .cm-btn-success:hover {
+  background: var(--cm-success-hover);
+}
+
+#cache-manager-tab .cm-btn-warning {
+  background: var(--cm-warning);
+  color: #1a1a2e;
+}
+#cache-manager-tab .cm-btn-warning:hover {
+  background: var(--cm-warning-hover);
+}
+
+#cache-manager-tab .cm-btn-danger {
+  background: var(--cm-danger);
+  color: #fff;
+}
+#cache-manager-tab .cm-btn-danger:hover {
+  background: var(--cm-danger-hover);
+}
+
+#cache-manager-tab .cm-btn-info {
+  background: var(--cm-info);
+  color: #fff;
+}
+#cache-manager-tab .cm-btn-info:hover {
+  background: var(--cm-info-hover);
+}
+
+/* ---------- Buttons Row ---------- */
+#cache-manager-tab .cm-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  margin: 0.75rem 0;
+}
+
+/* ---------- Log Area ---------- */
+#cache-manager-tab .cm-log {
+  background: rgba(17, 17, 27, 0.85);
+  border: 1px solid rgba(99, 102, 241, 0.12);
+  border-radius: var(--cm-radius-sm);
+  padding: 0.85rem 1rem;
+  max-height: 260px;
+  overflow-y: auto;
+  font-family: 'JetBrains Mono', 'Fira Code', 'Cascadia Code', monospace;
+  font-size: 0.78rem;
+  line-height: 1.65;
+  color: var(--cm-text-dim);
+  scrollbar-width: thin;
+  scrollbar-color: var(--cm-primary) transparent;
+}
+
+#cache-manager-tab .cm-log::-webkit-scrollbar {
+  width: 6px;
+}
+
+#cache-manager-tab .cm-log::-webkit-scrollbar-thumb {
+  background: var(--cm-primary);
+  border-radius: 999px;
+}
+
+#cache-manager-tab .cm-log .log-success { color: var(--cm-success); }
+#cache-manager-tab .cm-log .log-warning { color: var(--cm-warning); }
+#cache-manager-tab .cm-log .log-error   { color: var(--cm-danger); }
+#cache-manager-tab .cm-log .log-info    { color: var(--cm-info); }
+
+/* ---------- Toast Notifications ---------- */
+.cm-toast-container {
+  position: fixed;
+  top: 1.25rem;
+  right: 1.25rem;
+  z-index: 99999;
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+  pointer-events: none;
+}
+
+.cm-toast {
+  pointer-events: auto;
+  min-width: 280px;
+  max-width: 420px;
+  padding: 0.85rem 1.15rem;
+  border-radius: var(--cm-radius-sm, 8px);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+  font-size: 0.84rem;
+  font-weight: 500;
+  color: #fff;
+  animation: cm-toast-in 0.35s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.cm-toast.removing {
+  animation: cm-toast-out 0.3s ease-in forwards;
+}
+
+.cm-toast-success { background: rgba(34, 197, 94, 0.88); }
+.cm-toast-warning { background: rgba(245, 158, 11, 0.88); color: #1a1a2e; }
+.cm-toast-error   { background: rgba(239, 68, 68, 0.88); }
+.cm-toast-info    { background: rgba(59, 130, 246, 0.88); }
+
+@keyframes cm-toast-in {
+  from { opacity: 0; transform: translateX(40px) scale(0.92); }
+  to   { opacity: 1; transform: translateX(0) scale(1); }
+}
+
+@keyframes cm-toast-out {
+  from { opacity: 1; transform: translateX(0) scale(1); }
+  to   { opacity: 0; transform: translateX(40px) scale(0.92); }
+}
+
+/* ---------- Tooltip ---------- */
+#cache-manager-tab [data-cm-tooltip] {
+  position: relative;
+}
+
+#cache-manager-tab [data-cm-tooltip]::after {
+  content: attr(data-cm-tooltip);
+  position: absolute;
+  bottom: calc(100% + 8px);
+  left: 50%;
+  transform: translateX(-50%) scale(0.85);
+  padding: 0.35em 0.7em;
+  border-radius: 6px;
+  background: rgba(17, 17, 27, 0.92);
+  color: var(--cm-text, #cdd6f4);
+  font-size: 0.72rem;
+  white-space: nowrap;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.2s, transform 0.2s;
+  z-index: 10;
+}
+
+#cache-manager-tab [data-cm-tooltip]:hover::after {
+  opacity: 1;
+  transform: translateX(-50%) scale(1);
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 768px) {
+  #cache-manager-tab .cm-actions {
+    flex-direction: column;
+  }
+
+  #cache-manager-tab .cm-btn {
+    width: 100%;
+    justify-content: center;
+  }
+}
