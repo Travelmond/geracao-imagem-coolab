@@ -67,7 +67,8 @@ V4/
     ├── 08-versao-legada.md
     ├── 09-problemas-conhecidos.md
     ├── 10-glossario.md
-    └── 11-ambiente-local.md
+    ├── 11-ambiente-local.md
+    └── 14-estrategia-hibrida.md   ← NOVO: Estratégia A+B (AutoHealer v4.1.0)
 ```
 
 ---
